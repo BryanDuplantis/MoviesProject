@@ -1,0 +1,29 @@
+{
+  "name": "moviesproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "jade": "./node_modules/.bin/jade ./*.jade ./**/*.jade",
+    "sass": "./node_modules/.bin/node-sass main.scss main.css",
+    "build": "npm run jade; npm run sass",
+    "webserver": "./node_modules/.bin/hs -a localhost -o",
+    "start": "npm run build; npm run webserver"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BryanDuplantis/MoviesProject"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BryanDuplantis/MoviesProject/issues"
+  },
+  "homepage": "https://github.com/BryanDuplantis/MoviesProject",
+  "devDependencies": {
+    "http-server": "^0.8.0",
+    "jade": "^1.9.2",
+    "node-sass": "^3.0.0"
+  }
+}
