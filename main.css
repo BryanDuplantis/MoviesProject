@@ -1,0 +1,73 @@
+body {
+  /*background-image: url('http://3219a2.medialib.glogster.com/media/d4/d4ea70e68990cfd3f8d5872be3cdb509a344d467f1fc617c01c2ac10fff6c69d/silent-film-text-background-by-sakurabonodori-d4sjen8.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;*/
+  background-color: black;
+  text-shadow:0px 0px 10px #000;
+  color:white;
+  text-align: center;
+}
+
+h1 {
+  font-size: 7rem;
+  color: #FFFFAA;
+  font-family: 'Bangers', cursive;
+}
+
+h2 {
+  font-size: 200rem;
+  color: green;
+}
+
+img {
+  max-width: 200px;
+  max-height: 213px;
+  border: 1px solid #dedede;
+  margin-right: 15px;
+}
+
+/*.data-container {
+  width: 100%;
+  margin-top: 0px;
+}*/
+
+th {
+  border: 1px solid black;
+  padding: 5px;
+  font-family: 'Bangers';
+  text-align: center;
+  font-size: 25px;
+  color: white;
+  text-align: center;
+}
+
+td {
+  font-size: 35px;
+  color: yellow;
+  font-family: 'Bangers';
+  height: 125px;
+  width: 10%;
+  background-color: rgba(102, 153, 153, .2);
+  text-align: center;
+}
+
+hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+.data-container{
+  margin: 50px auto 0;
+}
+
+.movie {
+  color: lightblue;
+  background-color: lightblue:
+  border-color: lightblue;
+}
+
+#movieTitle {
+  width: 300px;
+  height: 33px;
+  padding: 1.5px;
+}

@@ -1,0 +1,20 @@
+{
+  "name": "MoviesProject",
+  "version": "1.0.0",
+  "homepage": "https://github.com/BryanDuplantis/MoviesProject",
+  "authors": [
+    "Bryan Duplantis <duplantis@gmail.com>"
+  ],
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lodash": "~3.8.0"
+  }
+}
