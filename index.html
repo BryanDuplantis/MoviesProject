@@ -1,35 +1,62 @@
 </doctype html>
   <html>
     <head>
-      <meta charset="utf-8">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Show Me The Movie</title>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
-      <link rel="stylesheet" href="main.css">
-      <link href='http://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+      <title>Show Me The Movie!</title>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+        <link rel="stylesheet" href="main.css">
+        <link href='http://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
     </head>
     <body>
-        <h1>Show Me The Movie</h1>
-      
-  <input id="movieTitle" placeholder="Movie Title"></input><a class="button button-primary movieButton" href="#">Search</a>
+      <div class="container">
+        <div class="row">
+          <div class="thirteen columns">
+          <div class="header-section">
+              <h1>Show Me The Movie!</h1>
+                <input id="movieTitle" placeholder="Movie Title"></input><a class="button button-primary movieButton" href="#">Search</a>
+          </div>
+        </div>
+      </div>
+      <table align = "center" class="table-container">
+        <tr>
+          <th>Movie</th>
+          <th>Year</th>
+          <th>Rated</th>
+          <th>IMDB Rating</th>
+          <th>Poster</th>
+        </tr>
+        <tr>
+          <td class="movieTitle"></td>
+          <td class="movieYear"></td> 
+          <td class="movieRated"></td>
+          <td class="movieRating"></td>
+          <td class="moviePoster"></td>
+        </tr>
+      </table>
+      <hr>
+      <div class="dataContainer">
+        <div class="row">
+          <div class="thirteen columns">
+          <table align = "center" class="data-container">
+            <tr>
+              <th>Movie</th>
+              <th>Year</th>
+              <th>Rated</th>
+              <th>IMDB Rating</th>
+              <th>Poster</th>
+            </tr>
+            <tr>
+              <td class="xxx"></td>
+              <td class="xxx"></td> 
+              <td class="xxx"></td>
+              <td class="xxx"></td>
+              <td class="xxx"></td>
+            </tr>
+          </table>    
+      </div>
 
-<table align = "center">
-  <tr>
-    <th>Movie</th>
-    <th>Year</th>
-    <th>Rated</th>
-    <th>IMDB Rating</th>
-    <th>Poster</th>
-  </tr>
-  <tr>
-    <td class="movieTitle"></td>
-    <td class="movieYear"></td> 
-    <td class="movieRated"></td>
-    <td class="movieRating"></td>
-    <td class="moviePoster"></td>
-  </tr>
-</table>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.8.0/lodash.min.js"></script>
     <script src="main.js"></script>

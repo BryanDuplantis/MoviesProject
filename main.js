@@ -1,4 +1,5 @@
 var MOVIE_URL = 'http://www.omdbapi.com/?t=';
+// $('.table-container').hide();
 var FIREBASE_URL = 'https://mymovieproject.firebaseio.com/movie.json';
 
 $.get(FIREBASE_URL, function (data) {
