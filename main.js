@@ -1,6 +1,7 @@
 var MOVIE_URL = 'http://www.omdbapi.com/?t=';
 // $('.table-container').hide();
 var FIREBASE_URL = 'https://mymovieproject.firebaseio.com/movie.json';
+var moviePoster;
 
 $.get(FIREBASE_URL, function (data) {
      Object.keys(data).forEach(function () {
@@ -19,21 +20,33 @@ movieTitle.onclick = function () {
       $.post(FIREBASE_URL, JSON.stringify(data), function(res) {
       })
     });
-  
+
   getJSON(MOVIE_URL + movie, function (data) {
    var td = document.querySelectorAll('td');
-    
+
       var title = data.Title;
       var year = data.Year;
       var rated = data.Rated;
       var rating = data.imdbRating;
       var poster = data.Poster;
-     
+
      $(".movieTitle").html(title)
      $(".movieYear").html(year)
      $(".movieRated").html(rated)
      $(".movieRating").html(rating)
-     $(".moviePoster").html("<img src='" + poster + "'</img>")
+     $(".moviePoster").html("<img src='" + poster + "'</img>");
+
+     //When poster image is clicked, adds movie data to new table
+
+     $(".moviePoster").on("click", function () {
+          //create new function to append to table
+     })
+
+     moviePoster = $(".moviePoster");
+
+    var $tableContainer = $(".table-container");
+
+    $tableContainer[0].style.visibility='visible';
   });
 }
 
@@ -46,6 +59,8 @@ function addMovieDetail(data) {
   target.append(detail);
 }
 
+
+  //creates document fragment
 function createMovieNode(movie){
 
  var docFragment = document.createDocumentFragment(); // contains all gathered nodes

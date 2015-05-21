@@ -8,6 +8,14 @@ body {
   text-align: center;
 }
 
+.table-container {
+  visibility: hidden;
+}
+
+.data-container {
+  visibility: hidden;
+}
+
 h1 {
   font-size: 7rem;
   color: #FFFFAA;
