@@ -5,27 +5,36 @@
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
-        <link rel="stylesheet" href="main.css">
+<!--         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+ -->        <link rel="stylesheet" href="main.css">
         <link href='http://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+        <link href="http://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet" type="text/css">
+        <!-- <link rel="stylesheet" href="lib/build.css">
+        <link rel="stylesheet" href="/css/main.css"> -->
     </head>
     <body>
-      <div class="container">
-        <div class="row">
-          <div class="thirteen columns">
-          <div class="header-section">
-              <h1>Show Me The Movie!</h1>
-                <input id="movieTitle" placeholder="Movie Title"></input><a class="button button-primary movieButton" href="#">Search</a>
+    <header class="header" role="banner">
+      <h1>Show Me The Movie!</h1>
+        <div class="onLoggedOut">
+          <div class="login">
+              <input type="email" placeholder="Email" required></input>
+              <input type="password" placeholder="Password" required></input>
+              <input class="doRegister button" type="button" value="Register">
+              <input class="doLogin button" type="button" value="Login">
+              <input class="doResetPassword button" type="button" value="Forgot Password">
+              <input class="doLogout button hidden" type="button" value="Logout">
           </div>
         </div>
-      </div>
-      <table align = "center" class="table-container">
+    </header>
+      <table align = "center" class="table-container hidden">
+        <div class="movieSearch hidden">
+          <input id="movieTitle" placeholder="Movie Title"></input><input class="search button" type="button" value="Search">
+        </div>
         <tr>
-          <th>Movie</th>
-          <th>Year</th>
-          <th>Rated</th>
-          <th>IMDB Rating</th>
-          <th>Poster</th>
+          <th class="movieData">Movie</th>
+          <th class="movieData">Year</th>
+          <th class="movieData">Rated</th>
+          <th class="movieData">IMDB Rating</th>
         </tr>
         <tr>
           <td class="movieTitle"></td>
@@ -39,26 +48,19 @@
       <div class="dataContainer">
         <div class="row">
           <div class="thirteen columns">
-          <table align = "center" class="data-container">
+          <table align = "center" class="data-container hidden">
             <tr>
               <th>Movie</th>
               <th>Year</th>
               <th>Rated</th>
               <th>IMDB Rating</th>
-              <th>Poster</th>
+              <th class="table-poster"></th>
             </tr>
-            <tr>
-              <td class="xxx"></td>
-              <td class="xxx"></td>
-              <td class="xxx"></td>
-              <td class="xxx"></td>
-              <td class="xxx"></td>
-            </tr>"<img src='" + poster + "'</img>"
           </table>
       </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.8.0/lodash.min.js"></script>
-    <script src="main.js"></script>
-</body>
+      <script src="https://cdn.firebase.com/js/client/2.2.5/firebase.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.8.0/lodash.min.js"></script>
+      <script src="main.js"></script>
+    </body>
   </html>

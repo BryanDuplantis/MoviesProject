@@ -1,7 +1,140 @@
 var MOVIE_URL = 'http://www.omdbapi.com/?t=';
-// $('.table-container').hide();
 var FIREBASE_URL = 'https://mymovieproject.firebaseio.com/movie.json';
+var FIREBASE_EMAIL_URL = 'https://nssc9authapp.firebaseio.com/';
+var fb = new Firebase(FIREBASE_EMAIL_URL);
 var moviePoster;
+
+// START OF PASSWORD CODE
+
+fb.unauth();
+
+$(".table-container").hide();
+$(".movieSearch").hide();
+
+$('.doResetPassword').click(function () {
+  var email = $('input[type="email"]').val();
+
+  fb.resetPassword({
+    email: email
+  }, function (err) {
+    if (err) {
+      alert(err.toString());
+    } else {
+      alert('Check your email!');
+    }
+  });
+});
+
+$('.doLogout').click(function () {
+  fb.unauth();
+})
+
+$('.doRegister').click(function () {
+  var email = $('input[type="email"]').val();
+  var password = $('input[type="password"]').val();
+
+  fb.createUser({
+    email: email,
+    password: password
+  }, function (err, userData) {
+    if (err) {
+      alert(err.toString());
+    } else {
+      doLogin(email, password);
+    }
+  });
+
+  event.preventDefault();
+});
+
+$('form').submit(function () {
+  var email = $('input[type="email"]').val();
+  var password = $('input[type="password"]').val();
+
+  doLogin(email, password);
+  event.preventDefault();
+});
+
+function clearLoginForm () {
+  $('input[type="email"]').val('');
+  $('input[type="password"]').val('');
+}
+
+function saveAuthData (authData) {
+  $.ajax({
+    method: 'PUT',
+    url: `${FIREBASE_URL}/users/${authData.uid}/profile.json`,
+    data: JSON.stringify(authData)
+  });
+}
+
+$('.doLogin').click(function () {
+  var email = $('input[type="email"]').val();
+  var password = $('input[type="password"]').val();
+
+  doLogin(email, password);
+  event.preventDefault();
+});
+
+$('.doLogout').click(function () {
+  fb.unauth(function () {
+    window.location.reload();
+  });
+})
+
+function doLogin (email, password, cb) {
+  fb.authWithPassword({
+    email: email,
+    password: password
+  }, function (err, authData) {
+    if (err) {
+      alert(err.toString());
+    } else {
+      saveAuthData(authData);
+      typeof cb === 'function' && cb(authData);
+    }
+  });
+}
+
+fb.onAuth(function (authData) {
+  var onLoggedOut = $('.onLoggedOut');
+  var onLoggedIn = $('.onLoggedIn');
+  var onMovieSearch = $('.movieSearch');
+  var tableContainer = $('.table-container');
+  var dataContainer = $('.data-container');
+  var doLogOut = $('.doLogOut');
+
+  if (authData && authData.password.isTemporaryPassword) {
+    onMovieSearch.removeClass('hidden');
+    onMovieSearch.removeAttr("style");
+    onLoggedIn.addClass('hidden');
+    onLoggedOut.addClass('hidden');
+    $('.table-container').removeAttr('style')
+    doLogOut.removeClass('hidden');
+    doLogOut.show();
+    tableContainer.removeClass('hidden');
+    dataContainer.removeClass('hidden');
+  } else if (authData) {
+    $('.table-container').removeAttr('style')
+    doLogOut.removeClass('hidden');
+    doLogOut.show();
+    onLoggedIn.removeClass('hidden');
+    onLoggedOut.addClass('hidden');
+    onMovieSearch.removeClass('hidden');
+    onMovieSearch.removeAttr("style");
+    $('.onLoggedIn h1').text(`Hello ${authData.password.email}`);
+    tableContainer.removeClass('hidden');
+    dataContainer.removeClass('hidden');
+  } // else {
+  //   onLoggedIn.addClass('hidden');
+  //   onMovieSearch.addClass('hidden');
+  // }
+
+  clearLoginForm();
+});
+
+
+//START OF MOVIE CODE
 
 $.get(FIREBASE_URL, function (data) {
      Object.keys(data).forEach(function () {
@@ -9,46 +142,85 @@ $.get(FIREBASE_URL, function (data) {
    });
  });
 
-var movieTitle = document.querySelector('.movieButton');
+  var movieTitle = document.querySelector('.search');
 
 movieTitle.onclick = function () {
 
- var input = document.querySelector('#movieTitle');
- var movie = input.value;
+  var input = document.querySelector('#movieTitle');
+  var movie = input.value;
 
     $.get(MOVIE_URL + movie, function(data) {
       $.post(FIREBASE_URL, JSON.stringify(data), function(res) {
       })
     });
 
-  getJSON(MOVIE_URL + movie, function (data) {
-   var td = document.querySelectorAll('td');
+getJSON(MOVIE_URL + movie, function (data) {
+  var td = document.querySelectorAll('td');
 
-      var title = data.Title;
-      var year = data.Year;
-      var rated = data.Rated;
-      var rating = data.imdbRating;
-      var poster = data.Poster;
+  var title = data.Title;
+  var year = data.Year;
+  var rated = data.Rated;
+  var rating = data.imdbRating;
+  var poster = data.Poster;
 
-     $(".movieTitle").html(title)
-     $(".movieYear").html(year)
-     $(".movieRated").html(rated)
-     $(".movieRating").html(rating)
-     $(".moviePoster").html("<img src='" + poster + "'</img>");
+   $(".movieTitle").html(title)
+   $(".movieYear").html(year)
+   $(".movieRated").html(rated)
+   $(".movieRating").html(rating)
+   $(".moviePoster").html("<img src='" + poster + "'</img>");
 
-     //When poster image is clicked, adds movie data to new table
+//When poster image is clicked, adds movie data to new table
 
-     $(".moviePoster").on("click", function () {
-          //create new function to append to table
-     })
+$(".moviePoster").on("click", function (data) {
 
-     moviePoster = $(".moviePoster");
+    var $table = $(".data-container");
+    var tr = $table.append("<tr></tr>");
+    var title = $(".movieTitle").text();
+    var year = $(".movieYear").text();
+    var rated = $(".movieRated").text();
+    var rating = $(".movieRating").text();
+    var poster = $(".moviePoster").html();
 
-    var $tableContainer = $(".table-container");
+//Append new movies to table
 
-    $tableContainer[0].style.visibility='visible';
+    $(".data-container").find("tr:last")
+      .append('<tr>')
+            .append('<td class="addMovieDetailInfo">')
+                .append(title)
+            .append('<td class="addMovieDetailInfo">')
+                .append(year)
+            .append('<td class="addMovieDetailInfo">')
+                .append(rated)
+            .append('<td class="addMovieDetailInfo">')
+                .append(rating)
+            .append('<td>')
+                .append(poster);
+})
+
+moviePoster = $(".moviePoster");
+
+  var $tableContainer = $(".table-container");
+      $tableContainer[0].style.visibility='visible';
+  var $dataContainer = $(".data-container");
+      $tableContainer[0].style.visibility='visible';
+
   });
 }
+
+//Append new movies to table from Kyle
+
+// function addTableDetail(data, id){
+//   var $table = $("table");
+//   $table.append("<tr></tr>");
+//   var $target = $("tr:last");
+//   $target.attr("data-id", id);
+//   var poster = data.Poster === "N/A" ? "http://i.imgur.com/rXuQiCm.jpg?1" : data.Poster;
+//   $target.append("<td><img class='watch-list-poster' src=" + poster + "></img></td>");
+//   $target.append("<td class='movieTitleList'>"+ data.Title +"</td>");
+//   $target.append("<td>"+ data.Year +"</td>");
+//   $target.append("<td>"+ data.imdbRating +"</td>");
+//   $target.append("<button class='btn btn-danger'>"+ "x" +"</button>");
+// }
 
 function addMovieDetail(data) {
 
@@ -59,76 +231,75 @@ function addMovieDetail(data) {
   target.append(detail);
 }
 
-
   //creates document fragment
 function createMovieNode(movie){
 
- var docFragment = document.createDocumentFragment(); // contains all gathered nodes
+  var docFragment = document.createDocumentFragment(); // contains all gathered nodes
 
-var table = document.createElement('TABLE');
-table.setAttribute("align", "center");
-docFragment.appendChild(table);
+  var table = document.createElement('TABLE');
+  table.setAttribute("align", "center");
+  docFragment.appendChild(table);
 
-var tbody = document.createElement('TBODY');
-table.appendChild(tbody);
+  var tbody = document.createElement('TBODY');
+  table.appendChild(tbody);
 
-var tr = document.createElement('TR');
-tbody.appendChild(tr);
+  var tr = document.createElement('TR');
+  tbody.appendChild(tr);
 
-var th = document.createElement('TH');
-tr.appendChild(th);
-var text = document.createTextNode("Movie");
-th.appendChild(text);
+  var th = document.createElement('TH');
+  tr.appendChild(th);
+  var text = document.createTextNode("Movie");
+  th.appendChild(text);
 
-var th_0 = document.createElement('TH');
-tr.appendChild(th_0);
-var text_0 = document.createTextNode("Year");
-th_0.appendChild(text_0);
+  var th_0 = document.createElement('TH');
+  tr.appendChild(th_0);
+  var text_0 = document.createTextNode("Year");
+  th_0.appendChild(text_0);
 
-var th_1 = document.createElement('TH');
-tr.appendChild(th_1);
-var text_1 = document.createTextNode("Rated");
-th_1.appendChild(text_1);
+  var th_1 = document.createElement('TH');
+  tr.appendChild(th_1);
+  var text_1 = document.createTextNode("Rated");
+  th_1.appendChild(text_1);
 
-var th_2 = document.createElement('TH');
-tr.appendChild(th_2);
-var text_2 = document.createTextNode("Release Date");
-th_2.appendChild(text_2);
+  var th_2 = document.createElement('TH');
+  tr.appendChild(th_2);
+  var text_2 = document.createTextNode("Release Date");
+  th_2.appendChild(text_2);
 
-var tr_0 = document.createElement('TR');
-tbody.appendChild(tr_0);
+  var tr_0 = document.createElement('TR');
+  tbody.appendChild(tr_0);
 
-var td = document.createElement('TD');
-tr_0.appendChild(td);
-var text_3 = document.createTextNode("xx");
-td.appendChild(text_3);
+  var td = document.createElement('TD');
+  tr_0.appendChild(td);
+  var text_3 = document.createTextNode("xx");
+  td.appendChild(text_3);
 
-var td_0 = document.createElement('TD');
-tr_0.appendChild(td_0);
-var text_4 = document.createTextNode("xx");
-td_0.appendChild(text_4);
+  var td_0 = document.createElement('TD');
+  tr_0.appendChild(td_0);
+  var text_4 = document.createTextNode("xx");
+  td_0.appendChild(text_4);
 
-var td_1 = document.createElement('TD');
-tr_0.appendChild(td_1);
-var text_5 = document.createTextNode("xx");
-td_1.appendChild(text_5);
+  var td_1 = document.createElement('TD');
+  tr_0.appendChild(td_1);
+  var text_5 = document.createTextNode("xx");
+  td_1.appendChild(text_5);
 
-var td_2 = document.createElement('TD');
-tr_0.appendChild(td_2);
-var text_6 = document.createTextNode("xx");
-td_2.appendChild(text_6);
+  var td_2 = document.createElement('TD');
+  tr_0.appendChild(td_2);
+  var text_6 = document.createTextNode("xx");
+  td_2.appendChild(text_6);
 
-var movietitle = document.createElement('INPUT');
-movietitle.setAttribute("id", "movieTitle");
-movietitle.setAttribute("placeholder", "Movie Title");
-docFragment.appendChild(movietitle);
+  var movietitle = document.createElement('INPUT');
+  movietitle.setAttribute("id", "movieTitle");
+  movietitle.setAttribute("placeholder", "Movie Title");
+  docFragment.appendChild(movietitle);
 
-var a = document.createElement('A');
-a.setAttribute("class", "button button-primary");
-a.setAttribute("href", "#");
-docFragment.appendChild(a);
-var text_7 = document.createTextNode("Search");
-a.appendChild(text_7);
+  var a = document.createElement('A');
+  a.setAttribute("class", "button button-primary");
+  a.setAttribute("href", "#");
+  docFragment.appendChild(a);
+  var text_7 = document.createTextNode("Search");
+  a.appendChild(text_7);
 
   return docFragment;
 }
