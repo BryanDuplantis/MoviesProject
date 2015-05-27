@@ -13,6 +13,14 @@ header {
   border-bottom: 1px solid #dedede;
 }
 
+.header-section {
+  margin-top: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
 h1 {
   float: left;
   margin-left: 20px;
@@ -73,14 +81,6 @@ input[type="password"] {
   color: red;
 }
 
-.header-section {
-  margin-top: 20px;
-}
-
-.hidden {
-  display: none;
-}
-
 h1 {
   font-size: 3.2rem;
   color: #FFFFAA;
@@ -102,24 +102,33 @@ img {
 
 th {
   border: 1px solid black;
-  padding: 5px;
+  width: 20%;
+  padding: 30px;
   font-family: 'Bangers';
-  text-align: center;
+  text-align: left;
   font-size: 25px;
   color: white;
-  text-align: center;
 }
-
-th
 
 .movieData {
   border: 1px solid black;
   padding: 5px;
   font-family: 'Bangers';
   text-align: center;
-  font-size: 25px;
+  font-size: 30px;
   color: white;
   text-align: center;
+}
+
+.addMovieDetailInfo {
+  border: 1px solid black;
+  padding: 5px;
+  font-family: 'Bangers';
+  text-align: center;
+  /*font-size: 15px;*/
+  color: white;
+  text-align: left;
+
 }
 
 td {
@@ -128,7 +137,7 @@ td {
   font-family: 'Bangers';
   height: 125px;
   width: 10%;
-  background-color: rgba(102, 153, 153, .2);
+  /*background-color: rgba(102, 153, 153, .2);*/
   text-align: center;
 }
 
@@ -137,20 +146,23 @@ hr {
   margin-bottom: 0px;
 }
 
-/*.data-container{
+.data-container{
   margin: 50px auto 0;
-}*/
-
-.addMovieDetailInfo {
-
 }
 
-.table-poster-img {
+.appendedMoviePoster {
+  max-width: 50px;
+  max-height: 5px;
+  border: 1px solid #dedede;
+  /*margin-right: 15px;*/
+}
+
+./*table-poster-img {
   max-width: 100px;
   max-height: 113px;
   border: 1px solid #dedede;
   margin-right: 15px;
-}
+}*/
 
 .movie {
   color: lightblue;

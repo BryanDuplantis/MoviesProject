@@ -6,7 +6,7 @@ var moviePoster;
 
 // START OF PASSWORD CODE
 
-fb.unauth();
+// fb.unauth();
 
 $(".table-container").hide();
 $(".movieSearch").hide();
@@ -185,16 +185,11 @@ $(".moviePoster").on("click", function (data) {
 
     $(".data-container").find("tr:last")
       .append('<tr>')
-            .append('<td class="addMovieDetailInfo">')
-                .append(title)
-            .append('<td class="addMovieDetailInfo">')
-                .append(year)
-            .append('<td class="addMovieDetailInfo">')
-                .append(rated)
-            .append('<td class="addMovieDetailInfo">')
-                .append(rating)
-            .append('<td>')
-                .append(poster);
+            .append('<td class="addMovieDetailInfo">' + title + '</td>')
+            .append('<td class="addMovieDetailInfo">' + year + '</td>')
+            .append('<td class="addMovieDetailInfo">' + rated + '</td>')
+            .append('<td class="addMovieDetailInfo">' + rating + '</td>')
+            .append('<td class="appendedMoviePoster">' + poster + '</td>')
 })
 
 moviePoster = $(".moviePoster");
@@ -206,21 +201,6 @@ moviePoster = $(".moviePoster");
 
   });
 }
-
-//Append new movies to table from Kyle
-
-// function addTableDetail(data, id){
-//   var $table = $("table");
-//   $table.append("<tr></tr>");
-//   var $target = $("tr:last");
-//   $target.attr("data-id", id);
-//   var poster = data.Poster === "N/A" ? "http://i.imgur.com/rXuQiCm.jpg?1" : data.Poster;
-//   $target.append("<td><img class='watch-list-poster' src=" + poster + "></img></td>");
-//   $target.append("<td class='movieTitleList'>"+ data.Title +"</td>");
-//   $target.append("<td>"+ data.Year +"</td>");
-//   $target.append("<td>"+ data.imdbRating +"</td>");
-//   $target.append("<button class='btn btn-danger'>"+ "x" +"</button>");
-// }
 
 function addMovieDetail(data) {
 
