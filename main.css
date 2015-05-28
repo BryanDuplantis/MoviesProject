@@ -97,7 +97,18 @@ img {
   max-width: 200px;
   max-height: 213px;
   border: 1px solid #dedede;
-  margin-right: 15px;
+  margin-right: 8px;
+  margin-left: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.smallImage {
+  max-width: 80px;
+  margin-right: 8px;
+  margin-left: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 th {
@@ -124,7 +135,6 @@ th {
   border: 1px solid black;
   padding: 5px;
   font-family: 'Bangers';
-  text-align: center;
   /*font-size: 15px;*/
   color: white;
   text-align: left;
@@ -137,7 +147,7 @@ td {
   font-family: 'Bangers';
   height: 125px;
   width: 10%;
-  /*background-color: rgba(102, 153, 153, .2);*/
+  background-color: rgba(102, 153, 153, .2);
   text-align: center;
 }
 
@@ -147,22 +157,8 @@ hr {
 }
 
 .data-container{
-  margin: 50px auto 0;
+  margin-top: 50px auto 0;
 }
-
-.appendedMoviePoster {
-  max-width: 50px;
-  max-height: 5px;
-  border: 1px solid #dedede;
-  /*margin-right: 15px;*/
-}
-
-./*table-poster-img {
-  max-width: 100px;
-  max-height: 113px;
-  border: 1px solid #dedede;
-  margin-right: 15px;
-}*/
 
 .movie {
   color: lightblue;

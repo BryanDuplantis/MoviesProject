@@ -1,5 +1,5 @@
 var MOVIE_URL = 'http://www.omdbapi.com/?t=';
-var FIREBASE_URL = 'https://mymovieproject.firebaseio.com/movie.json';
+var FIREBASE_URL = 'https://mymovieproject.firebaseio.com/';
 var FIREBASE_EMAIL_URL = 'https://nssc9authapp.firebaseio.com/';
 var fb = new Firebase(FIREBASE_EMAIL_URL);
 var moviePoster;
@@ -116,19 +116,14 @@ fb.onAuth(function (authData) {
     dataContainer.removeClass('hidden');
   } else if (authData) {
     $('.table-container').removeAttr('style')
+    tableContainer.addClass('hidden');
     doLogOut.removeClass('hidden');
-    doLogOut.show();
     onLoggedIn.removeClass('hidden');
     onLoggedOut.addClass('hidden');
     onMovieSearch.removeClass('hidden');
     onMovieSearch.removeAttr("style");
     $('.onLoggedIn h1').text(`Hello ${authData.password.email}`);
-    tableContainer.removeClass('hidden');
-    dataContainer.removeClass('hidden');
-  } // else {
-  //   onLoggedIn.addClass('hidden');
-  //   onMovieSearch.addClass('hidden');
-  // }
+  }
 
   clearLoginForm();
 });
@@ -136,7 +131,7 @@ fb.onAuth(function (authData) {
 
 //START OF MOVIE CODE
 
-$.get(FIREBASE_URL, function (data) {
+$.get(FIREBASE_URL + "movie.json", function (data) {
      Object.keys(data).forEach(function () {
       addMovieDetail(data);
    });
@@ -146,11 +141,14 @@ $.get(FIREBASE_URL, function (data) {
 
 movieTitle.onclick = function () {
 
+  var tableContainer = $('.table-container');
+  tableContainer.removeClass('hidden');
+
   var input = document.querySelector('#movieTitle');
   var movie = input.value;
 
     $.get(MOVIE_URL + movie, function(data) {
-      $.post(FIREBASE_URL, JSON.stringify(data), function(res) {
+      $.post(FIREBASE_URL + "movie.json", JSON.stringify(data), function(res) {
       })
     });
 
@@ -167,30 +165,9 @@ getJSON(MOVIE_URL + movie, function (data) {
    $(".movieYear").html(year)
    $(".movieRated").html(rated)
    $(".movieRating").html(rating)
-   $(".moviePoster").html("<img src='" + poster + "'</img>");
+   $(".moviePoster").html("<img class='newMovie'src='" + poster + "'</img>");
 
 //When poster image is clicked, adds movie data to new table
-
-$(".moviePoster").on("click", function (data) {
-
-    var $table = $(".data-container");
-    var tr = $table.append("<tr></tr>");
-    var title = $(".movieTitle").text();
-    var year = $(".movieYear").text();
-    var rated = $(".movieRated").text();
-    var rating = $(".movieRating").text();
-    var poster = $(".moviePoster").html();
-
-//Append new movies to table
-
-    $(".data-container").find("tr:last")
-      .append('<tr>')
-            .append('<td class="addMovieDetailInfo">' + title + '</td>')
-            .append('<td class="addMovieDetailInfo">' + year + '</td>')
-            .append('<td class="addMovieDetailInfo">' + rated + '</td>')
-            .append('<td class="addMovieDetailInfo">' + rating + '</td>')
-            .append('<td class="appendedMoviePoster">' + poster + '</td>')
-})
 
 moviePoster = $(".moviePoster");
 
@@ -201,6 +178,30 @@ moviePoster = $(".moviePoster");
 
   });
 }
+
+$(".moviePoster").on("click", function (data) {
+
+  var dataContainer = $('.data-container');
+  dataContainer.removeClass('hidden');
+
+
+  var $table = $(".data-container");
+  var tr = $table.append("<tr></tr>");
+  title = $(".movieTitle").text();
+  year = $(".movieYear").text();
+  rated = $(".movieRated").text();
+  rating = $(".movieRating").text();
+  var poster = $(".newMovie").attr("src")
+
+//Append new movies to table
+
+    $(".data-container").find("tr:last")
+            .append('<td class="addMovieDetailInfo">' + title + '</td>')
+            .append('<td class="addMovieDetailInfo">' + year + '</td>')
+            .append('<td class="addMovieDetailInfo">' + rated + '</td>')
+            .append('<td class="addMovieDetailInfo">' + rating + '</td>')
+            .append('<td class="appendedMoviePoster">' + "<img class='smallImage' src=" + poster + ">" + '</td>')
+})
 
 function addMovieDetail(data) {
 

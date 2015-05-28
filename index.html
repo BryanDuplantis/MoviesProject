@@ -22,11 +22,13 @@
               <input class="doRegister button" type="button" value="Register">
               <input class="doLogin button" type="button" value="Login">
               <input class="doResetPassword button" type="button" value="Forgot Password">
-              <input class="doLogout button hidden" type="button" value="Logout">
+          </div>
+          <div class="onLoggedIn">
+              <input class="doLogout button" type="button" value="Logout">
           </div>
         </div>
     </header>
-      <table align = "center" class="table-container hidden">
+      <table class="table-container hidden" >
         <div class="movieSearch hidden">
           <input id="movieTitle" placeholder="Movie Title"></input><input class="search button" type="button" value="Search">
         </div>
@@ -48,14 +50,16 @@
       <div class="dataContainer">
         <div class="row">
           <div class="thirteen columns">
-          <table align = "left" class="data-container hidden">
-            <tr>
-              <th>Movie</th>
-              <th>Year</th>
-              <th>Rated</th>
-              <th>IMDB Rating</th>
-            </tr>
-          </table>
+            <table class="data-container hidden">
+              <tr>
+                <th>Movie</th>
+                <th>Year</th>
+                <th>Rated</th>
+                <th>IMDB Rating</th>
+              </tr>
+            </table>
+          </div>
+        </div>
       </div>
       <script src="https://cdn.firebase.com/js/client/2.2.5/firebase.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
