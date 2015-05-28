@@ -1,5 +1,6 @@
 body {
-  background-color: black;
+  background-image: url('http://www.scotland.org/assets/1154/film-quiz-1680x1029__background.jpg');
+  /*background-color: black;*/
   text-shadow:0px 0px 10px #000;
   color:white;
   text-align: center;
@@ -24,7 +25,6 @@ header {
 h1 {
   float: left;
   margin-left: 20px;
-  font-family: 'Architects Daughter';
   font-size: 55px;
   color: white;
   text-shadow:0px 0px 10px #000;
@@ -50,24 +50,19 @@ input[type="password"] {
 
 // buttons
 
-.button {
-  height: 50px;
-}
-
-/*input[type="submit"]{
-  float: center;
-  margin-top: 10px;
-  font-size: 20px;
-}*/
-
 .doRegister {
+  font-family: 'Bangers';
   margin-top: 10px;
   font-size: 100px;
+  margin-left: 15px;
+  margin-right: 25px;
 }
 
 .doLogin {
   margin-top: 10px;
   font-size: 100px;
+  margin-left: 5px;
+  /*margin-right: 25px;*/
 }
 
 .doLogout {
@@ -78,7 +73,20 @@ input[type="password"] {
 .doResetPassword {
   margin-top: 10px;
   font-size: 100px;
-  color: red;
+}
+
+.search, .doLogout, .doRegister, .doLogin, .doLogout, .doResetPassword {
+  background-color: grey;
+  text-shadow:0px 0px 5px #000;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius:6px;
+  color: yellow;
+  font-family: 'Bangers';
+  font-size: 22px;
+  text-decoration: none;
+  cursor: pointer;
+  border:none;
 }
 
 h1 {
@@ -112,11 +120,12 @@ img {
 }
 
 th {
+  background-color: rgba(5, 5, 5, .4);
   border: 1px solid black;
   width: 20%;
   padding: 30px;
   font-family: 'Bangers';
-  text-align: left;
+  text-align: center;
   font-size: 25px;
   color: white;
 }
@@ -124,11 +133,11 @@ th {
 .movieData {
   border: 1px solid black;
   padding: 5px;
+  margin-top: 15px;
   font-family: 'Bangers';
   text-align: center;
   font-size: 30px;
   color: white;
-  text-align: center;
 }
 
 .addMovieDetailInfo {
@@ -142,19 +151,29 @@ th {
 }
 
 td {
-  font-size: 35px;
+  font-size: 45px;
   color: yellow;
   font-family: 'Bangers';
   height: 125px;
   width: 10%;
-  background-color: rgba(102, 153, 153, .2);
+  background-color: rgba(109, 109, 109, .4);
   text-align: center;
 }
 
-hr {
+.addMovieDetailInfo {
+  font-size: 25px;
+  color: yellow;
+  font-family: 'Bangers';
+  height: 125px;
+  width: 10%;
+  background-color: rgba(102, 153, 153, .6);
+  text-align: center;
+}
+
+/*hr {
   margin-top: 10px;
   margin-bottom: 0px;
-}
+}*/
 
 .data-container{
   margin-top: 50px auto 0;
@@ -168,8 +187,9 @@ hr {
 
 #movieTitle {
   width: 300px;
-  height: 40px;
+  height: 37px;
   padding: 1.5px;
-  margin-top: 15px;
-  margin-right: 20px;
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 2px;
 }

@@ -122,7 +122,7 @@ fb.onAuth(function (authData) {
     onLoggedOut.addClass('hidden');
     onMovieSearch.removeClass('hidden');
     onMovieSearch.removeAttr("style");
-    $('.onLoggedIn h1').text(`Hello ${authData.password.email}`);
+    // $('.onLoggedIn h1').append.text(${authData.password.email}`);
   }
 
   clearLoginForm();
@@ -165,7 +165,7 @@ getJSON(MOVIE_URL + movie, function (data) {
    $(".movieYear").html(year)
    $(".movieRated").html(rated)
    $(".movieRating").html(rating)
-   $(".moviePoster").html("<img class='newMovie'src='" + poster + "'</img>");
+   $(".moviePoster").html("<img class='newMovie overlay'src='" + poster + "'</img>");
 
 //When poster image is clicked, adds movie data to new table
 

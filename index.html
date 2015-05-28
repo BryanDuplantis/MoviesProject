@@ -5,8 +5,7 @@
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
- -->        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="main.css">
         <link href='http://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
         <link href="http://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet" type="text/css">
         <!-- <link rel="stylesheet" href="lib/build.css">
@@ -19,18 +18,16 @@
           <div class="login">
               <input type="email" placeholder="Email" required></input>
               <input type="password" placeholder="Password" required></input>
-              <input class="doRegister button" type="button" value="Register">
               <input class="doLogin button" type="button" value="Login">
+              <input class="doRegister button" type="button" value="Register">
               <input class="doResetPassword button" type="button" value="Forgot Password">
-          </div>
-          <div class="onLoggedIn">
-              <input class="doLogout button" type="button" value="Logout">
           </div>
         </div>
     </header>
       <table class="table-container hidden" >
         <div class="movieSearch hidden">
-          <input id="movieTitle" placeholder="Movie Title"></input><input class="search button" type="button" value="Search">
+          <input id="movieTitle" placeholder="Search Movie Title"></input><input class="search button" type="button" value="Search">
+          <input class="doLogout button hidden" type="button" value="Logout">
         </div>
         <tr>
           <th class="movieData">Movie</th>
@@ -44,6 +41,7 @@
           <td class="movieRated"></td>
           <td class="movieRating"></td>
           <td class="moviePoster"></td>
+          <!-- <span class="text-content"><span>Place Name</span></span> -->
         </tr>
       </table>
       <hr>
